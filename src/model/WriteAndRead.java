@@ -1,5 +1,7 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,11 +16,15 @@ public class WriteAndRead {
 			File file = new File("c:\\tmp\\goal\\goal.txt");
 
 			if (checkBeforeFile(file)){
-				FileWriter fileWriter = new FileWriter(file,true);
+				FileWriter fw = new FileWriter(file,true);
+				//バッファにためておく
+				BufferedWriter bw = new BufferedWriter(fw);
 
-				fileWriter.write(goal + "\r\n");
-
-				fileWriter.close();
+				bw.write(goal);
+				//改行処理
+				bw.newLine();
+				//ファイルにデータを出力する流れを閉じる
+				bw.close();
 			}else{
 				System.out.println("ファイルに書き込めません");
 			}
@@ -36,16 +42,18 @@ public class WriteAndRead {
 
 			if (checkBeforeFile(file)){
 				System.out.println("\n設定した目標\n");
-				FileReader fileReader = new FileReader(file);
+				FileReader fr = new FileReader(file);
+				//バッファにためておく
+				BufferedReader br = new BufferedReader(fr);
 
 				//1文字ずつ文字コードとして読み込み、文字コードから文字へ変換
 				//ファイルの最後に到達すると-1を返すので、-1が返ると繰り返し処理を抜ける
 				int ch;
-				while((ch = fileReader.read()) != -1) {
+				while((ch = br.read()) != -1) {
 					System.out.print((char)ch);
 				}
 				////ファイルを閉じる
-				fileReader.close();
+				br.close();
 			}else {
 				System.out.println("ファイルが見つからないか開くことができません。");
 			}
