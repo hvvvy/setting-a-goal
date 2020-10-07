@@ -9,6 +9,11 @@ public class SetGoal {
 
 		System.out.println("100日後に〇〇になるアプリ");
 
+
+		Count100 c100 = new Count100();
+		c100.count();
+
+
 		MakeFile makeFile = new MakeFile();
 		GoalReception gr = new GoalReception();
 		WriteAndRead wr = new WriteAndRead();
