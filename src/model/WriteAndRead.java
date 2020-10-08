@@ -11,7 +11,7 @@ import java.io.IOException;
 public class WriteAndRead {
 
 	//書き込み処理
-	public void fileWrite(String goal) {
+	public void fileWrite(String goal,long timeMillis100) {
 		try{
 			File file = new File("c:\\tmp\\goal\\goal.txt");
 
@@ -19,8 +19,8 @@ public class WriteAndRead {
 				FileWriter fw = new FileWriter(file,true);
 				//バッファにためておく
 				BufferedWriter bw = new BufferedWriter(fw);
-
-				bw.write(goal);
+				//目標と\sと書き込み処理時のミリ秒をファイルに記入
+				bw.write(goal + "\s" + timeMillis100);
 				//改行処理
 				bw.newLine();
 				//ファイルにデータを出力する流れを閉じる
@@ -48,9 +48,28 @@ public class WriteAndRead {
 
 				//1文字ずつ文字コードとして読み込み、文字コードから文字へ変換
 				//ファイルの最後に到達すると-1を返すので、-1が返ると繰り返し処理を抜ける
-				int ch;
-				while((ch = br.read()) != -1) {
-					System.out.print((char)ch);
+				String line;
+				while((line = br.readLine()) != null) {
+					String[] readLine = line.split("\s+");
+
+					//書き込み時点の100日後のミリ秒をString型からlong型へ変換
+					 long timeMillis100 = Long.parseLong(readLine[1]);
+					 // 現在時刻のミリ秒
+					 long currentTimeMillis = System.currentTimeMillis();
+
+					 // 差分のミリ秒
+					 long diff = timeMillis100 - currentTimeMillis;
+
+				        // ミリ秒から秒へ変換
+				        diff = diff / 1000;
+				        // minutes
+				        diff = diff / 60;
+				        // hour
+				        diff = diff / 60;
+				        // day
+				        diff = diff / 24;
+
+					System.out.print(readLine[0] + "\s" + diff + "\n");
 				}
 				////ファイルを閉じる
 				br.close();

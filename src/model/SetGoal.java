@@ -10,14 +10,15 @@ public class SetGoal {
 		System.out.println("100日後に〇〇になるアプリ");
 
 
-		Count100 c100 = new Count100();
-		c100.count();
+
+
 
 
 		MakeFile makeFile = new MakeFile();
 		GoalReception gr = new GoalReception();
 		WriteAndRead wr = new WriteAndRead();
 		File file = new File("c:\\tmp\\goal\\goal.txt");
+		Count100 c100 = new Count100();
 
 		//テキストファイルの作成
 		//既にあった場合はなにもしない
@@ -28,8 +29,10 @@ public class SetGoal {
 		if(empty == false) {
 			wr.fileRead();
 		}else {
+			//カウントダウン(日数）
+			long timeMillis100 = c100.count();
 			//受け付けた目標をgoal.txtに書き込む
-			wr.fileWrite(gr.set());
+			wr.fileWrite(gr.set(),timeMillis100);
 		}
 		System.out.println("\n目標を追加するならSキーを入力してください。");
 		boolean judge = true;
@@ -48,7 +51,8 @@ public class SetGoal {
 			case "s":
 			case "Ｓ":
 			case "ｓ":
-				wr.fileWrite(gr.set());
+				long timeMillis100s = c100.count();
+				wr.fileWrite(gr.set(),timeMillis100s);
 				wr.fileRead();
 
 				System.out.println("\n続けて追加するならSキーを、追加終了するならEキーを入力してください。");

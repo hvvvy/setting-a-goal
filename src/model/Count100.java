@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class Count100 {
 
-	public void count() {
+	public long count() {
 		/*
 		LocalDate date1;
 		LocalDate date2 = date1.plusDays(100);
@@ -20,9 +20,10 @@ public class Count100 {
 		 Calendar cal = Calendar.getInstance();
 		 //現在から100日足す
 		 cal.add(Calendar.DAY_OF_MONTH, 100);
-		 // 1970/1/1 から設定した cal のミリ秒
-		 long timeMillis = cal.getTimeInMillis();
+		 // 1970/1/1 から設定した cal(現在時刻+100日) のミリ秒
+		 long timeMillis100 = cal.getTimeInMillis();
 
+		 /*
 		 // 現在時刻のミリ秒
 		 long currentTimeMillis = System.currentTimeMillis();
 
@@ -38,6 +39,9 @@ public class Count100 {
 	        // day
 	        diff = diff / 24;
 
-		 System.out.println(diff);
+		 return diff;
+
+		 */
+		 return timeMillis100;
 	}
 }
