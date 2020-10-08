@@ -11,11 +11,6 @@ public class GoalReception {
 		Scanner scan = new Scanner(System.in);
 		String goal = scan.nextLine();
 
-		/*
-		//Scannerクラスを閉じる
-		scan.close();
-		*/
-
 		return goal;
 	}
 }
