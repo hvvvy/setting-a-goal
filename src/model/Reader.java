@@ -45,7 +45,7 @@ public class Reader {
 				        if(diff >= 0) {
 				        	System.out.print(readLine[0] + "\s" + "達成まであと" + diff +"日" + "\n");
 				        }else {
-				        	System.out.print(readLine[0] + "Complete!!" + "\n");
+				        	System.out.print(readLine[0] + "\s" + "Complete!!" + "\n");
 				        }
 				}
 				////ファイルを閉じる
